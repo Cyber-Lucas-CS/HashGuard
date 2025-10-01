@@ -1,6 +1,6 @@
-# Coding Project
-# Lucas Ramage
-# Sept 2025
+# HashGuard
+# A lightweight file integrity tool in Python
+# Copyright (C) 2025  Lucas Ramage
 
 # IMPORTS
 import csv
