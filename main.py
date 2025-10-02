@@ -38,7 +38,7 @@ def Create_CSV(inputDIR):
         # Walk through all files in the directory, including subdirectories
         for path, dirs, files in os.walk(inputDIR, topdown=False):
             for name in files:
-                timestamp = str(datetime.date.today())
+                timestamp = str(datetime.datetime.now().isoformat())
                 fileName = os.path.join(path, name)
                 # Generate hashes for the file
                 with open(fileName, "rb") as refFile:
@@ -76,7 +76,7 @@ def Read_Input(inputDIR):
     # It goes through each file in the directory, just like when creating the cache
     for path, dirs, files in os.walk(inputDIR, topdown=False):
         for name in files:
-            timestamp = str(datetime.date.today())
+            timestamp = str(datetime.datetime.now().isoformat())
             fileName = os.path.join(path, name)
             with open(fileName, "rb") as refFile:
                 # Calculate all of the hashes
@@ -125,6 +125,9 @@ def Save_Results(filename, rows, header):
 def main():
     # Perform a check to see if the cache already exists
     firstTime = Cache_Check()
+    # Check for proper command-line arguments
+    if len(sys.argv) != 2:
+        sys.exit("Usage: python hashguard.py <directory>")
     # Load input folder from command-line argument, exiting if it is an invalid target.
     InputFolder = sys.argv[1]
     if not os.path.exists(InputFolder):
